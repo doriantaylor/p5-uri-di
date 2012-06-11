@@ -191,9 +191,31 @@ as URI objects.
 
 =cut
 
-=head2 key
+=head2 crypto
+
+Returns the cryptography spec embedded in the C<enc> or C<menc>
+parameters. A key is kind of a weird thing to embed in a URI, but
+whatever floats your boat.
 
 =cut
+
+sub crypto {
+    my ($self, $which, $new) = @_;
+    Carp::croak("Only 'enc' and 'menc' are valid values.")
+          unless $which =~ /^m?enc/i;
+
+    my ($old) = $self->query_param($which);
+    $old = URI::di::CryptoSpec->new($old) if definedsssss $old;
+
+    if (defined $new) {
+        $new = URI::di::CryptoSpec->new($new);
+        $self->query_param(lc $which => "$new");
+a        # i always thought this behaviour was weird.
+        return $old;
+    }
+
+    $old;
+}
 
 package URI::di::CryptoSpec;
 
