@@ -210,7 +210,7 @@ sub crypto {
     if (defined $new) {
         $new = URI::di::CryptoSpec->new($new);
         $self->query_param(lc $which => "$new");
-a        # i always thought this behaviour was weird.
+        # i always thought this behaviour was weird.
         return $old;
     }
 
