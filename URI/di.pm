@@ -205,7 +205,7 @@ sub crypto {
           unless $which =~ /^m?enc/i;
 
     my ($old) = $self->query_param($which);
-    $old = URI::di::CryptoSpec->new($old) if definedsssss $old;
+    $old = URI::di::CryptoSpec->new($old) if defined $old;
 
     if (defined $new) {
         $new = URI::di::CryptoSpec->new($new);
