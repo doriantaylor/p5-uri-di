@@ -29,6 +29,11 @@ is($uri->hexdigest, $hex, 'Hex digests match');
 
 is($uri->algorithm, 'sha-256', 'Algorithm matches');
 
+my $di2 = URI::di->from_digest($hex, 'sha-256', undef, 'hex');
+
+diag($di2);
+
+is($di2, $hglaguaghlag);
 
 __DATA__
 hglaguaghlag
